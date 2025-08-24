@@ -22,7 +22,7 @@
             android:id="@+id/movieImage"
             android:layout_width="65dp"
             android:layout_height="100dp"
-            android:src="@drawable/theshawshankredemption"
+            android:src="@drawable/poster_ponyo"
             android:layout_marginEnd="20dp" />
 
 
@@ -33,20 +33,19 @@
             android:orientation="vertical">
 
 
-
             <TextView
                 android:id="@+id/movieTitle"
                 android:text="Title"
                 android:textStyle="bold"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-
 
 
             <TextView
                 android:id="@+id/movieGenre"
                 android:text="Genre"
+                android:textSize="12sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -55,7 +54,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="  Favourite"
-                android:button="@drawable/custom_favbtn" />
+                android:textSize="12sp"
+                android:button="@drawable/favourites_icon"
+                android:buttonTint="@color/red"
+                />
 
         </LinearLayout>
 
