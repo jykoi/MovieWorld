@@ -58,31 +58,15 @@
         </LinearLayout>
     </LinearLayout>
 
-    <!-- Side Toolbar (initially off screen to the left) -->
-    <LinearLayout
-        android:id="@+id/side_toolbar"
+    <!-- Side Filter Toolbar (initially off screen to the left) -->
+    <FrameLayout
+        android:id="@+id/filter_toolbar"
         android:layout_width="250dp"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="#EEEEEE"
-        android:padding="16dp"
+        android:background="#EEEBF3"
         android:translationX="-250dp"
         android:elevation="8dp">
 
-        <!-- Toolbar content -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Side Menu"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:paddingBottom="8dp"/>
-
-        <!-- Add toolbar buttons, etc. -->
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Settings" />
-    </LinearLayout>
+    </FrameLayout>
 
 </FrameLayout>

@@ -19,47 +19,46 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [topMainFragment.newInstance] factory method to
+ * Use the [FilterMenuFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class TopMainFragment : Fragment() {
-
-    private var isMenuVisible = false
+class FilterMenuFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_top_main, container, false)
+        return inflater.inflate(R.layout.fragment_filter_menu, container, false)
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        val btnFilter = view.findViewById<ImageButton>(R.id.btn_filter)
+        val btnExitFilter = view.findViewById<ImageButton>(R.id.btn_exit_filter)
 
-        btnFilter.setOnClickListener {
-            filterListener?.onFilter()
+        btnExitFilter.setOnClickListener {
+            exitListener?.onExit()
 
         }
+
     }
 
     //FILTER BUTTON
     //sends data of when button is clicked to the main activity
     //allows menu tool bar to open
 
-    private var filterListener: OnFilterListener? = null
+    private var exitListener: OnExitListener? = null
 
     //filter button interface
-    interface OnFilterListener {
-        fun onFilter()
+    interface OnExitListener {
+        fun onExit()
     }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (context is OnFilterListener) {
-            filterListener = context
+        if (context is OnExitListener) {
+            exitListener = context
         } else {
             throw RuntimeException("$context must implement OnFilterListener")
         }
@@ -67,7 +66,7 @@ class TopMainFragment : Fragment() {
 
     override fun onDetach() {
         super.onDetach()
-        filterListener = null
+        exitListener = null
     }
 
 }
