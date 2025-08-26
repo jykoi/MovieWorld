@@ -3,6 +3,8 @@ package com.example.movieworld
 // import androidx.fragment.app.viewModels
 import androidx.fragment.app.activityViewModels
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -87,6 +89,7 @@ class MovieListFragment : Fragment() {
         val btnSearch = view.findViewById<Button>(R.id.btnSearch)
         val searchField = view.findViewById<TextView>(R.id.searchField)
 
+        //not necessary but added for to maintain the integrity of the layout design
         btnSearch.setOnClickListener {
             //gets user input
             //removes whitespaces
@@ -110,6 +113,37 @@ class MovieListFragment : Fragment() {
             //update movie list to recycler view
             adapter.updateData(filtered.toMutableList())
         }
+
+        // Observe text changes
+        searchField.addTextChangedListener(object : TextWatcher {
+            //called before the text is changed
+            //determines the position of the carat and the char sequence
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            //called after the text is changed
+            //also determines the position of the carat and the char sequence
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val query = s.toString().trim()
+
+                // get full list of movies
+                val movieList = viewModel.movies.value ?: return
+
+                // filter logic (title OR description)
+                val filtered = if (query.isEmpty()) {
+                    movieList
+                } else {
+                    movieList.filter { movie ->
+                        movie.title.contains(query, ignoreCase = true) ||
+                                movie.description.contains(query, ignoreCase = true)
+                    }
+                }
+
+                // update movie list in recycler view
+                adapter.updateData(filtered.toMutableList())
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+        })
 
     }
 }

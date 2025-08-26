@@ -1,58 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/main"
-    >
+    android:layout_height="match_parent">
 
-    <FrameLayout
-        android:id="@+id/top_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        />
-
-    <FrameLayout
-        android:id="@+id/content_container"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-
-        />
-
+    <!-- Original vertical layout moved inside FrameLayout -->
     <LinearLayout
-        android:id="@+id/bottom_container"
+        android:id="@+id/main"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="#FFFFFF"
-        android:padding="8dp"
-        android:gravity="center">
+        android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/btn_movies"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:drawableTop="@drawable/movies_icon"
-            android:text="Movies"
-            android:textColor="#000000"
-            android:background="?android:attr/selectableItemBackground"
-            android:padding="8dp" />
+        <!-- Top container (e.g., search bar or header) -->
+        <FrameLayout
+            android:id="@+id/top_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-        <Button
-            android:id="@+id/btn_favourites"
-            android:layout_width="0dp"
+        <!-- Main content area for fragments -->
+        <FrameLayout
+            android:id="@+id/content_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <!-- Bottom navigation -->
+        <LinearLayout
+            android:id="@+id/bottom_container"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:drawableTop="@drawable/favourites_icon"
-            android:text="Favourites"
-            android:textColor="#888888"
-            android:background="?android:attr/selectableItemBackground"
-            android:padding="8dp" />
+            android:orientation="horizontal"
+            android:background="#FFFFFF"
+            android:padding="8dp"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/btn_movies"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/movies_icon"
+                android:text="Movies"
+                android:textColor="#000000"
+                android:background="?android:attr/selectableItemBackground"
+                android:padding="8dp" />
+
+            <Button
+                android:id="@+id/btn_favourites"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/favourites_icon"
+                android:text="Favourites"
+                android:textColor="#888888"
+                android:background="?android:attr/selectableItemBackground"
+                android:padding="8dp" />
+        </LinearLayout>
     </LinearLayout>
 
+    <!-- Side Toolbar (initially off screen to the left) -->
+    <LinearLayout
+        android:id="@+id/side_toolbar"
+        android:layout_width="250dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#EEEEEE"
+        android:padding="16dp"
+        android:translationX="-250dp"
+        android:elevation="8dp">
 
-</LinearLayout>
+        <!-- Toolbar content -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Side Menu"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:paddingBottom="8dp"/>
 
+        <!-- Add toolbar buttons, etc. -->
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Settings" />
+    </LinearLayout>
+
+</FrameLayout>
