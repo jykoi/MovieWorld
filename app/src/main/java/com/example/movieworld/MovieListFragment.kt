@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -80,5 +82,34 @@ class MovieListFragment : Fragment() {
                 adapter.updateData(toShow)
             }
         }
+
+        //SEARCH FEATURE
+        val btnSearch = view.findViewById<Button>(R.id.btnSearch)
+        val searchField = view.findViewById<TextView>(R.id.searchField)
+
+        btnSearch.setOnClickListener {
+            //gets user input
+            //removes whitespaces
+            val query = searchField.text.toString().trim()
+
+            //get full list of movies
+            //if list is null/empty it exits function
+            val movieList = viewModel.movies.value ?: return@setOnClickListener
+
+            //filtered implies the list of movies found with search query
+            val filtered = if (query.isEmpty()) {
+                //show entire list if search bar is empty
+                movieList
+            } else {
+                //filter logic
+                movieList.filter { movie ->
+                    movie.title.contains(query, ignoreCase = true)
+                }
+            }
+
+            //update movie list to recycler view
+            adapter.updateData(filtered.toMutableList())
+        }
+
     }
 }
