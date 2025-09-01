@@ -3,11 +3,9 @@ package com.example.movieworld
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 
+//MainActivity hosts all fragments and handles navigation between them,
 class MainActivity : AppCompatActivity(), TopMainFragment.OnFilterListener, FilterMenuFragment.OnExitListener  {
     private lateinit var btnMovies: Button
     private lateinit var btnFavourites: Button
@@ -16,9 +14,10 @@ class MainActivity : AppCompatActivity(), TopMainFragment.OnFilterListener, Filt
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
+        //Only add initial fragments if this is the first time launching app,
+        //to avoid readding after screen rotation/ config change.
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.top_container, TopMainFragment())
@@ -33,18 +32,19 @@ class MainActivity : AppCompatActivity(), TopMainFragment.OnFilterListener, Filt
                 .commit()
         }
 
+        //Bottom navigation bar:
         btnMovies = findViewById(R.id.btn_movies)
         btnFavourites = findViewById(R.id.btn_favourites)
 
         btnMovies.setOnClickListener {
-            // Show the full movie list
+            //Show the full movie list (MovieListFragment)
             supportFragmentManager.beginTransaction()
                 .replace(R.id.content_container, MovieListFragment())
                 .commit()
         }
 
         btnFavourites.setOnClickListener {
-            // push Favourites so Back pops back to Movies
+            //Show FavouritesFragment
             supportFragmentManager.beginTransaction()
                 .replace(R.id.content_container, FavouritesFragment())
                 .addToBackStack(null)
@@ -54,12 +54,6 @@ class MainActivity : AppCompatActivity(), TopMainFragment.OnFilterListener, Filt
         //FILTER TOOL BAR
         filterbar = findViewById(R.id.filter_toolbar)
 
-
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
     }
 
     //when filter button is clicked tool bar appears
