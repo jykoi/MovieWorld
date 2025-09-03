@@ -39,7 +39,8 @@ class MainActivity : AppCompatActivity(), TopMainFragment.OnFilterListener, Filt
         btnMovies.setOnClickListener {
             //Show the full movie list (MovieListFragment)
             supportFragmentManager.beginTransaction()
-                .replace(R.id.content_container, MovieListFragment())
+                //.replace(R.id.content_container, MovieListFragment())
+                .replace(R.id.content_container, MovieListFragment.newInstance(false))
                 .commit()
         }
 

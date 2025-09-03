@@ -58,7 +58,7 @@ class MovieAdapter (private var items: MutableList<Movie>)
         holder.favBtn.setOnClickListener(object : View.OnClickListener {
             override fun onClick(clickedView: View?) {
                 val newState = !movie.isFavorite
-                val currentPosition = holder.adapterPosition
+                val currentPosition = holder.bindingAdapterPosition
                 if (currentPosition != RecyclerView.NO_POSITION && listener != null) {
                     listener!!.onFavouriteToggled(movie, newState, currentPosition)
                 }
@@ -68,7 +68,7 @@ class MovieAdapter (private var items: MutableList<Movie>)
         //When user taps "Details", open the detail screen
         holder.detailsBtn.setOnClickListener(object : View.OnClickListener {
             override fun onClick(clickedView: View?) {
-                val currentPosition = holder.adapterPosition
+                val currentPosition = holder.bindingAdapterPosition
                 if (currentPosition != RecyclerView.NO_POSITION && listener != null) {
                     listener!!.onDetailsClicked(movie, currentPosition)
                 }

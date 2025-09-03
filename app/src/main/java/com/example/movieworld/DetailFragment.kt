@@ -33,6 +33,7 @@ class DetailFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         movie = arguments?.getParcelable(ARG_MOVIE) //Retrieve movie from arguments
+
     }
 
     override fun onCreateView(
