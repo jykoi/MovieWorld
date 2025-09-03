@@ -29,7 +29,7 @@ class MovieAdapter (private var items: MutableList<Movie>)
         val movieTitle: TextView = itemView.findViewById(R.id.movieTitle)
         val movieDescription: TextView = itemView.findViewById(R.id.movieDescription)
         val categoryContainer: LinearLayout = itemView.findViewById(R.id.categoryContainer)
-        val favBtn: CheckBox = itemView.findViewById(R.id.favBtn)
+        val favCheckBox: CheckBox = itemView.findViewById(R.id.favCheckBox)
         val detailsBtn: Button = itemView.findViewById(R.id.movieDetails)
     }
 
@@ -51,11 +51,11 @@ class MovieAdapter (private var items: MutableList<Movie>)
         renderCategories(holder.categoryContainer, movie.categories)    //Genre chips
 
         //Prevent infinite loop when setting checkbox (tap heart)
-        holder.favBtn.setOnCheckedChangeListener(null)
-        holder.favBtn.isChecked = movie.isFavorite
+        holder.favCheckBox.setOnCheckedChangeListener(null)
+        holder.favCheckBox.isChecked = movie.isFavorite
 
         //When user taps heart, tell the fragment
-        holder.favBtn.setOnClickListener(object : View.OnClickListener {
+        holder.favCheckBox.setOnClickListener(object : View.OnClickListener {
             override fun onClick(clickedView: View?) {
                 val newState = !movie.isFavorite
                 val currentPosition = holder.bindingAdapterPosition
