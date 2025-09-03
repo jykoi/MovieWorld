@@ -13,7 +13,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-//Fragment that shows full list of movies OR favourites only (if showFavouritesOnly = true)
+//Fragment that shows full list of movies + search.
 class MovieListFragment : Fragment() {
 
     companion object {
