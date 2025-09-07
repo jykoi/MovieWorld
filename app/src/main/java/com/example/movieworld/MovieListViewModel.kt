@@ -9,8 +9,13 @@ import androidx.lifecycle.MutableLiveData
 
 class MovieListViewModel : ViewModel() {
     private val _movies = MutableLiveData<List<Movie>>()    // _movies is the private lists of movies (only this class can change it)
-
     val movies: LiveData<List<Movie>> = _movies             // movies is the public version (other classes can observe it but not change)
+
+    // stores the state when switching between fragments
+    //persistent state
+    var currentQuery: String = ""
+    var selectedGenres: MutableSet<String> = mutableSetOf()
+    var showFavouritesOnly: Boolean = false
 
     //init runs when the app start, and fills the list with the below 10 movies
     init {
@@ -137,6 +142,7 @@ class MovieListViewModel : ViewModel() {
             )
         )
     }
+
 
     //Function that updates favourite status of a movie by its ID, called whenever user taps heart button.
     fun updateFavoriteById(id: Int, fav: Boolean) {

@@ -64,7 +64,7 @@ class DetailFragment : Fragment() {
             meta.text = metaText
 
             //Categories ie. genre list
-            genreChip.text = item.categories.joinToString(", ")
+            genreChip.text = item.categories.toString()
 
             description.text = item.description
             favCheck.isChecked = item.isFavorite

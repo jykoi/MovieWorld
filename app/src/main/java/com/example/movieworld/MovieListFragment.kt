@@ -35,12 +35,10 @@ class MovieListFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView     //scrollable list
     private lateinit var adapter: MovieAdapter          //adapter that fills in each movie card
 
-    private var showFavouritesOnly: Boolean = false
-
     //onCreate when fragment is created, check if favourites should be shown
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        showFavouritesOnly = arguments?.getBoolean(ARG_SHOW_FAVS, false) ?: false   //read the flag
+        viewModel.showFavouritesOnly = arguments?.getBoolean(ARG_SHOW_FAVS, false) ?: false   //read the flag
     }
 
     //Create actual screen
@@ -82,51 +80,25 @@ class MovieListFragment : Fragment() {
         //Observe changes in movie list (when heart is tapped)
         viewModel.movies.observe(viewLifecycleOwner) { list ->
             if (list != null) {
-                val toShow = if (showFavouritesOnly) {
-                    //If showing favourites only, create a new list for them
-                    val onlyFavs = ArrayList<Movie>()
-
-                    //go through each movie in the list, add to favourites list if isFavourites
-                    for (movie in list) {
-                        if (movie.isFavorite) {
-                            onlyFavs.add(movie)
-                        }
-                    }
-                    onlyFavs        //return list of favourites
-                } else {
-                    list
-                }
-                adapter.updateData(toShow)
+                // Save raw list, then re-apply search + filters
+                applyFiltersAndSearch()
             }
         }
 
         //SEARCH FEATURE
         val btnSearch = view.findViewById<Button>(R.id.btnSearch)
         val searchField = view.findViewById<TextView>(R.id.searchField)
+        searchField.setText(viewModel.currentQuery)     //restores previous text entered when switching fragments
+
 
         //not necessary but added for to maintain the integrity of the layout design
         btnSearch.setOnClickListener {
             //gets user input
             //removes whitespaces
-            val query = searchField.text.toString().trim()
+            viewModel.currentQuery = searchField.text.toString().trim()
 
-            //get full list of movies
-            //if list is null/empty it exits function
-            val movieList = viewModel.movies.value ?: return@setOnClickListener
-
-            //filtered implies the list of movies found with search query
-            val filtered = if (query.isEmpty()) {
-                //show entire list if search bar is empty
-                movieList
-            } else {
-                //filter logic
-                movieList.filter { movie ->
-                    movie.title.contains(query, ignoreCase = true)
-                }
-            }
-
-            //update movie list to recycler view
-            adapter.updateData(filtered.toMutableList())
+            //updates list according to user input
+            applyFiltersAndSearch()
         }
 
         // Observe text changes
@@ -135,30 +107,51 @@ class MovieListFragment : Fragment() {
             //determines the position of the carat and the char sequence
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
-            //called after the text is changed
-            //also determines the position of the carat and the char sequence
+            //applies the search logic when search bar text is changed
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                val query = s.toString().trim()
-
-                // get full list of movies
-                val movieList = viewModel.movies.value ?: return
-
-                // filter logic (title OR description)
-                val filtered = if (query.isEmpty()) {
-                    movieList
-                } else {
-                    movieList.filter { movie ->
-                        movie.title.contains(query, ignoreCase = true) ||
-                                movie.description.contains(query, ignoreCase = true)
-                    }
-                }
-
-                // update movie list in recycler view
-                adapter.updateData(filtered.toMutableList())
+                viewModel.currentQuery = s.toString().trim()
+                applyFiltersAndSearch()
             }
 
             override fun afterTextChanged(s: Editable?) {}
         })
+    }
 
+    //SEARCH + FILTER CODE
+    private fun applyFiltersAndSearch() {
+        var allMovies = viewModel.movies.value ?: return
+
+        // favourites saved list
+        if (viewModel.showFavouritesOnly) {
+            allMovies = allMovies.filter { it.isFavorite }
+        }
+
+        // filter between genre (categories)
+        var filtered = if (viewModel.selectedGenres.isEmpty()) {
+            allMovies
+        } else {
+            allMovies.filter { movie ->
+                // keep movie if it matches all genres selected
+                viewModel.selectedGenres.all { sel -> movie.categories.any { it.equals(sel, ignoreCase = true) } }
+            }
+        }
+
+        // search query (title or description)
+        if (viewModel.currentQuery.isNotEmpty()) {
+            filtered = filtered.filter { movie ->
+                movie.title.contains(viewModel.currentQuery, ignoreCase = true) ||
+                        movie.description.contains(viewModel.currentQuery, ignoreCase = true)
+            }
+        }
+
+        //update list
+        adapter.updateData(filtered.toMutableList())
+    }
+
+
+    fun updateSelectedGenres(genres: Set<String>) {
+        viewModel.selectedGenres.clear()
+        viewModel.selectedGenres.addAll(genres)
+        applyFiltersAndSearch()
     }
 }
