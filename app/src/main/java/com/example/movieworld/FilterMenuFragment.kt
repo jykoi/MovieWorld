@@ -7,28 +7,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
+import android.widget.CheckBox
 import android.widget.ImageButton
-import android.widget.Toast
-import androidx.lifecycle.ViewModelProvider
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [FilterMenuFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class FilterMenuFragment : Fragment() {
+
+    //listeners to send data to main activity
+    private var filterListener: OnFilterChangedListener? = null
+    private var exitListener: OnExitListener? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_filter_menu, container, false)
     }
 
@@ -36,37 +27,71 @@ class FilterMenuFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val btnExitFilter = view.findViewById<ImageButton>(R.id.btn_exit_filter)
-
         btnExitFilter.setOnClickListener {
             exitListener?.onExit()
-
         }
 
+
+        //All the movie genres (categories)
+        val checkboxes = listOf(
+            view.findViewById<CheckBox>(R.id.btnAction),
+            view.findViewById<CheckBox>(R.id.btnAdventure),
+            view.findViewById<CheckBox>(R.id.btnAnimation),
+            view.findViewById<CheckBox>(R.id.btnComedy),
+            view.findViewById<CheckBox>(R.id.btnCrime),
+            view.findViewById<CheckBox>(R.id.btnFamily),
+            view.findViewById<CheckBox>(R.id.btnHorror),
+            view.findViewById<CheckBox>(R.id.btnMystery),
+            view.findViewById<CheckBox>(R.id.btnSciFi),
+            view.findViewById<CheckBox>(R.id.btnThriller)
+        )
+
+        val updateFilter = {
+            val selectedGenres = checkboxes.filter { it.isChecked }
+                .map { it.text.toString() }
+                .toSet()
+            filterListener?.onFilterChanged(selectedGenres)
+        }
+
+        // Attach listener to each checkbox
+        checkboxes.forEach { checkbox ->
+            checkbox.setOnCheckedChangeListener { _, _ -> updateFilter() }
+        }
+
+        //clears all filters
+        val btnClear = view.findViewById<Button>(R.id.btnClear)
+        btnClear.setOnClickListener{
+            checkboxes.forEach { it.isChecked = false }
+            filterListener?.onFilterChanged(emptySet())
+        }
     }
 
-    //FILTER BUTTON
-    //sends data of when button is clicked to the main activity
-    //allows menu tool bar to open
+    // FILTER LISTENER
+    interface OnFilterChangedListener {
+        fun onFilterChanged(selected: Set<String>)
+    }
 
-    private var exitListener: OnExitListener? = null
-
-    //filter button interface
+    // EXIT LISTENER
     interface OnExitListener {
         fun onExit()
     }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
+        if (context is OnFilterChangedListener) {
+            filterListener = context
+        }
         if (context is OnExitListener) {
             exitListener = context
-        } else {
-            throw RuntimeException("$context must implement OnFilterListener")
+        }
+        if (filterListener == null && exitListener == null) {
+            throw RuntimeException("$context must implement OnFilterChangedListener or OnExitListener")
         }
     }
 
     override fun onDetach() {
         super.onDetach()
+        filterListener = null
         exitListener = null
     }
-
 }

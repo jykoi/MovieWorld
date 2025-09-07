@@ -35,6 +35,11 @@ class MovieListFragment : Fragment() {
 
     private var showFavouritesOnly: Boolean = false
 
+
+    //search + filter variables
+    private var currentQuery: String = ""
+    private val selectedGenres = mutableSetOf<String>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         showFavouritesOnly = arguments?.getBoolean(ARG_SHOW_FAVS, false) ?: false
@@ -70,18 +75,8 @@ class MovieListFragment : Fragment() {
 
         viewModel.movies.observe(viewLifecycleOwner) { list ->
             if (list != null) {
-                val toShow = if (showFavouritesOnly) {
-                    val onlyFavs = ArrayList<Movie>()
-                    for (movie in list) {
-                        if (movie.isFavorite) {
-                            onlyFavs.add(movie)
-                        }
-                    }
-                    onlyFavs
-                } else {
-                    list
-                }
-                adapter.updateData(toShow)
+                // Save raw list, then re-apply search + filters
+                applyFiltersAndSearch()
             }
         }
 
@@ -120,30 +115,55 @@ class MovieListFragment : Fragment() {
             //determines the position of the carat and the char sequence
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
-            //called after the text is changed
-            //also determines the position of the carat and the char sequence
+            //applies the search logic when search bar text is changed
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                val query = s.toString().trim()
-
-                // get full list of movies
-                val movieList = viewModel.movies.value ?: return
-
-                // filter logic (title OR description)
-                val filtered = if (query.isEmpty()) {
-                    movieList
-                } else {
-                    movieList.filter { movie ->
-                        movie.title.contains(query, ignoreCase = true) ||
-                                movie.description.contains(query, ignoreCase = true)
-                    }
-                }
-
-                // update movie list in recycler view
-                adapter.updateData(filtered.toMutableList())
+                currentQuery = s.toString().trim()
+                applyFiltersAndSearch()
             }
 
             override fun afterTextChanged(s: Editable?) {}
         })
 
+
+    }
+
+    //SEARCH + FILTER CODE
+    private fun applyFiltersAndSearch() {
+        var allMovies = viewModel.movies.value ?: return
+
+        // favourites saved list
+        if (showFavouritesOnly) {
+            allMovies = allMovies.filter { it.isFavorite }
+        }
+
+        // filter between genre (categories)
+        var filtered = if (selectedGenres.isEmpty()) {
+            allMovies
+        } else {
+            allMovies.filter { movie ->
+                // split genre string into each category
+                val movieGenres = movie.genre.split(",").map { it.trim() }
+                // keep movie if it matches all genres selected
+                selectedGenres.all { sel -> movieGenres.any { it.equals(sel, ignoreCase = true) } }
+            }
+        }
+
+        // search query (title or description)
+        if (currentQuery.isNotEmpty()) {
+            filtered = filtered.filter { movie ->
+                movie.title.contains(currentQuery, ignoreCase = true) ||
+                        movie.description.contains(currentQuery, ignoreCase = true)
+            }
+        }
+
+        //update list
+        adapter.updateData(filtered.toMutableList())
+    }
+
+
+    fun updateSelectedGenres(genres: Set<String>) {
+        selectedGenres.clear()
+        selectedGenres.addAll(genres)
+        applyFiltersAndSearch()
     }
 }

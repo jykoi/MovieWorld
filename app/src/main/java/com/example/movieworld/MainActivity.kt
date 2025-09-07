@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class MainActivity : AppCompatActivity(), TopMainFragment.OnFilterListener, FilterMenuFragment.OnExitListener  {
+class MainActivity : AppCompatActivity(), TopMainFragment.OnFilterListener, FilterMenuFragment.OnExitListener, FilterMenuFragment.OnFilterChangedListener  {
     private lateinit var btnMovies: Button
     private lateinit var btnFavourites: Button
     private lateinit var filterbar: View
@@ -84,5 +84,16 @@ class MainActivity : AppCompatActivity(), TopMainFragment.OnFilterListener, Filt
         }
         isMenuVisible = !isMenuVisible
     }
+
+    //filter change
+    //when a genre is selected it updates the list
+    override fun onFilterChanged(selected: Set<String>) {
+        val frag = supportFragmentManager.findFragmentById(R.id.content_container)
+        if (frag is MovieListFragment) {
+            frag.updateSelectedGenres(selected)
+        }
+    }
+
+
 
 }
