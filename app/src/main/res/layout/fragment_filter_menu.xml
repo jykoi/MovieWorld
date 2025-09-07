@@ -1,140 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FilterMenuFragment">
+    android:fillViewport="true">
 
-    <!-- Filter Toolbar (initially off screen to the left) -->
-    <LinearLayout
-        android:layout_width="250dp"
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="#EEEBF3"
-        android:padding="16dp"
-        android:elevation="8dp">
+        tools:context=".FilterMenuFragment">
 
-        <!-- Filter Content -->
-        <androidx.constraintlayout.widget.ConstraintLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="8dp">
+        <!-- Filter Toolbar (initially off screen to the left) -->
+        <LinearLayout
+            android:layout_width="250dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="#EEEBF3"
+            android:padding="16dp"
+            android:elevation="8dp">
 
-            <TextView
-                android:id="@+id/tv_filters"
-                android:layout_width="wrap_content"
+            <!-- Filter Content -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="8dp"
-                android:text="Filters"
-                android:textSize="25sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                android:padding="8dp">
 
-            <!-- Filter Content Exit Button -->
-            <ImageButton
-                android:id="@+id/btn_exit_filter"
-                android:layout_width="36dp"
-                android:layout_height="35dp"
-                android:background="@android:color/transparent"
-                android:scaleType="fitXY"
-                android:src="@drawable/filter_icon"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/tv_filters"
-                app:layout_constraintBottom_toBottomOf="@id/tv_filters"/>
+                <TextView
+                    android:id="@+id/tv_filters"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="8dp"
+                    android:text="Filters"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <!-- Filter Content Exit Button -->
+                <ImageButton
+                    android:id="@+id/btn_exit_filter"
+                    android:layout_width="36dp"
+                    android:layout_height="35dp"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/filter_icon"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_filters"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_filters"/>
 
-        <!-- Genres to select to filter -->
-        <CheckBox
-            android:id="@+id/btnAction"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Action"
-            android:button="@drawable/checkbox_icon"
-            android:paddingStart="12dp"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <CheckBox
-            android:id="@+id/btnAdventure"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Adventure"
-            android:button="@drawable/checkbox_icon"
-            android:paddingStart="12dp"/>
+            <!-- Genres to select to filter -->
+            <CheckBox
+                android:id="@+id/btnAction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Action"
+                android:button="@drawable/checkbox_icon"
+                android:paddingStart="12dp"/>
 
-        <CheckBox
-            android:id="@+id/btnAnimation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Animation"
-            android:button="@drawable/checkbox_icon"
-            android:paddingStart="12dp"/>
+            <CheckBox
+                android:id="@+id/btnAdventure"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Adventure"
+                android:button="@drawable/checkbox_icon"
+                android:paddingStart="12dp"/>
 
-        <CheckBox
-            android:id="@+id/btnComedy"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Comedy"
-            android:button="@drawable/checkbox_icon"
-            android:paddingStart="12dp"/>
+            <CheckBox
+                android:id="@+id/btnAnimation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Animation"
+                android:button="@drawable/checkbox_icon"
+                android:paddingStart="12dp"/>
 
-        <CheckBox
-            android:id="@+id/btnCrime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Crime"
-            android:button="@drawable/checkbox_icon"
-            android:paddingStart="12dp"/>
+            <CheckBox
+                android:id="@+id/btnComedy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Comedy"
+                android:button="@drawable/checkbox_icon"
+                android:paddingStart="12dp"/>
 
-        <CheckBox
-            android:id="@+id/btnFamily"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Family"
-            android:button="@drawable/checkbox_icon"
-            android:paddingStart="12dp"/>
+            <CheckBox
+                android:id="@+id/btnCrime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Crime"
+                android:button="@drawable/checkbox_icon"
+                android:paddingStart="12dp"/>
 
-        <CheckBox
-            android:id="@+id/btnHorror"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Horror"
-            android:button="@drawable/checkbox_icon"
-            android:paddingStart="12dp"/>
+            <CheckBox
+                android:id="@+id/btnFamily"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Family"
+                android:button="@drawable/checkbox_icon"
+                android:paddingStart="12dp"/>
 
-        <CheckBox
-            android:id="@+id/btnMystery"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Mystery"
-            android:button="@drawable/checkbox_icon"
-            android:paddingStart="12dp"/>
+            <CheckBox
+                android:id="@+id/btnHorror"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Horror"
+                android:button="@drawable/checkbox_icon"
+                android:paddingStart="12dp"/>
 
-        <CheckBox
-            android:id="@+id/btnSciFi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Sci-Fi"
-            android:button="@drawable/checkbox_icon"
-            android:paddingStart="12dp"/>
+            <CheckBox
+                android:id="@+id/btnMystery"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mystery"
+                android:button="@drawable/checkbox_icon"
+                android:paddingStart="12dp"/>
 
-        <CheckBox
-            android:id="@+id/btnThriller"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Thriller"
-            android:button="@drawable/checkbox_icon"
-            android:paddingStart="12dp"/>
+            <CheckBox
+                android:id="@+id/btnSciFi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sci-Fi"
+                android:button="@drawable/checkbox_icon"
+                android:paddingStart="12dp"/>
 
-        <Button
-            android:id="@+id/btnClear"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:text="Clear" />
+            <CheckBox
+                android:id="@+id/btnThriller"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Thriller"
+                android:button="@drawable/checkbox_icon"
+                android:paddingStart="12dp"/>
 
-    </LinearLayout>
-</FrameLayout>
+            <Button
+                android:id="@+id/btnClear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="Clear" />
+
+        </LinearLayout>
+    </FrameLayout>
+</ScrollView>
