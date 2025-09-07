@@ -8,6 +8,12 @@ class MovieListViewModel : ViewModel() {
     private val _movies = MutableLiveData<List<Movie>>()
     val movies: LiveData<List<Movie>> = _movies
 
+    // stores the state when switching between fragments
+    //persistent state
+    var currentQuery: String = ""
+    var selectedGenres: MutableSet<String> = mutableSetOf()
+    var showFavouritesOnly: Boolean = false
+
     init {
         _movies.value = listOf(
             Movie(
