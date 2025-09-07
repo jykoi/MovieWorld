@@ -8,14 +8,18 @@ import androidx.lifecycle.MutableLiveData
 //Survives screen rotation.
 
 class MovieListViewModel : ViewModel() {
-    private val _movies = MutableLiveData<List<Movie>>()    // _movies is the private lists of movies (only this class can change it)
-    val movies: LiveData<List<Movie>> = _movies             // movies is the public version (other classes can observe it but not change)
+    // _movies is the private lists of movies (only this class can change it)
+    private val _movies = MutableLiveData<List<Movie>>()
+    // movies is the public version (other classes can observe it but not change)
+    val movies: LiveData<List<Movie>> = _movies
 
-    // stores the state when switching between fragments
-    //persistent state
+    // persistent state
     var currentQuery: String = ""
-    var selectedGenres: MutableSet<String> = mutableSetOf()
     var showFavouritesOnly: Boolean = false
+
+    // Genres selected in filter
+    val selectedGenres = mutableSetOf<String>()
+    val selectedGenresLive = MutableLiveData<Set<String>>(selectedGenres)
 
     //init runs when the app start, and fills the list with the below 10 movies
     init {
@@ -144,18 +148,23 @@ class MovieListViewModel : ViewModel() {
     }
 
 
-    //Function that updates favourite status of a movie by its ID, called whenever user taps heart button.
-    fun updateFavoriteById(id: Int, fav: Boolean) {
-        val current = _movies.value ?: return       //Get current list or exit if null.
-        val updated = current.toMutableList()       //Make a mutable copy so we can edit
 
-        //For each movie, check if the ID matches what we want to update.
+    // Function that updates favourite status of a movie by its ID
+    fun updateFavoriteById(id: Int, fav: Boolean) {
+        val current = _movies.value ?: return
+        val updated = current.toMutableList()
         for (i in updated.indices) {
             if (updated[i].id == id) {
-                //If ID matches, replace the old movie with a new copy where isFavourite is set to fav.
                 updated[i] = updated[i].copy(isFavorite = fav)
             }
         }
-        _movies.value = updated.toList()        //Update the list (triggers UI update).
+        _movies.value = updated.toList()
+    }
+
+    // Updates selected genres and notifies observers
+    fun updateSelectedGenres(genres: Set<String>) {
+        selectedGenres.clear()
+        selectedGenres.addAll(genres)
+        selectedGenresLive.value = selectedGenres
     }
 }

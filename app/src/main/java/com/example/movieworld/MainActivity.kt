@@ -7,20 +7,27 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.activity.viewModels
 
-class MainActivity : AppCompatActivity(), TopMainFragment.OnFilterListener, FilterMenuFragment.OnExitListener, FilterMenuFragment.OnFilterChangedListener  {
+
+class MainActivity : AppCompatActivity(),
+    TopMainFragment.OnFilterListener,
+    FilterMenuFragment.OnExitListener,
+    FilterMenuFragment.OnFilterChangedListener {
+
     private lateinit var btnMovies: Button
     private lateinit var btnFavourites: Button
     private lateinit var filterbar: View
     private var isMenuVisible = false
+
+    // Shared ViewModel for fragments
+    private val movieViewModel: MovieListViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
-        //Only add initial fragments if this is the first time launching app,
-        //to avoid readding after screen rotation/ config change.
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.top_container, TopMainFragment())
@@ -35,28 +42,23 @@ class MainActivity : AppCompatActivity(), TopMainFragment.OnFilterListener, Filt
                 .commit()
         }
 
-        //Bottom navigation bar:
         btnMovies = findViewById(R.id.btn_movies)
         btnFavourites = findViewById(R.id.btn_favourites)
 
         btnMovies.setOnClickListener {
-            // Show the full movie list
             supportFragmentManager.beginTransaction()
                 .replace(R.id.content_container, MovieListFragment())
                 .commit()
         }
 
         btnFavourites.setOnClickListener {
-            // push Favourites so Back pops back to Movies
             supportFragmentManager.beginTransaction()
                 .replace(R.id.content_container, FavouritesFragment())
                 .addToBackStack(null)
                 .commit()
         }
 
-        //FILTER TOOL BAR
         filterbar = findViewById(R.id.filter_toolbar)
-
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -65,7 +67,7 @@ class MainActivity : AppCompatActivity(), TopMainFragment.OnFilterListener, Filt
         }
     }
 
-    //when filter button is clicked tool bar appears
+    // Filter button clicked -> show/hide toolbar
     override fun onFilter() {
         if (!isMenuVisible) {
             filterbar.animate()
@@ -76,10 +78,9 @@ class MainActivity : AppCompatActivity(), TopMainFragment.OnFilterListener, Filt
         isMenuVisible = !isMenuVisible
     }
 
-    //when exit button is clicked tool bar disappears
+    // Exit button clicked -> hide toolbar
     override fun onExit() {
         if (isMenuVisible) {
-            // Hide toolbar
             filterbar.animate()
                 .translationX(-filterbar.width.toFloat())
                 .setDuration(250)
@@ -88,13 +89,16 @@ class MainActivity : AppCompatActivity(), TopMainFragment.OnFilterListener, Filt
         isMenuVisible = !isMenuVisible
     }
 
-    //filter change
-    //when a genre is selected it updates the list
+    // Filter change -> update ViewModel and refresh fragments
     override fun onFilterChanged(selected: Set<String>) {
-        val frag = supportFragmentManager.findFragmentById(R.id.content_container)
-        if (frag is MovieListFragment) {
-            frag.updateSelectedGenres(selected)
+        movieViewModel.updateSelectedGenres(selected)
+
+        val fragments = supportFragmentManager.fragments
+        for (frag in fragments) {
+            when (frag) {
+                is MovieListFragment -> frag.applyFiltersAndSearch()
+                is FavouritesFragment -> frag.applyFiltersAndSearch()
+            }
         }
     }
-
 }

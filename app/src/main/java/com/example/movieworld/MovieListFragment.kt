@@ -118,7 +118,7 @@ class MovieListFragment : Fragment() {
     }
 
     //SEARCH + FILTER CODE
-    private fun applyFiltersAndSearch() {
+    fun applyFiltersAndSearch() {
         var allMovies = viewModel.movies.value ?: return
 
         // favourites saved list
