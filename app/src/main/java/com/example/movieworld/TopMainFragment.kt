@@ -69,5 +69,4 @@ class TopMainFragment : Fragment() {
         super.onDetach()
         filterListener = null
     }
-
 }

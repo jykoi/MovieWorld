@@ -3,10 +3,12 @@ package com.example.movieworld
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 
-//MainActivity hosts all fragments and handles navigation between them,
-class MainActivity : AppCompatActivity(), TopMainFragment.OnFilterListener, FilterMenuFragment.OnExitListener  {
+class MainActivity : AppCompatActivity(), TopMainFragment.OnFilterListener, FilterMenuFragment.OnExitListener, FilterMenuFragment.OnFilterChangedListener  {
     private lateinit var btnMovies: Button
     private lateinit var btnFavourites: Button
     private lateinit var filterbar: View
@@ -14,6 +16,7 @@ class MainActivity : AppCompatActivity(), TopMainFragment.OnFilterListener, Filt
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
         //Only add initial fragments if this is the first time launching app,
@@ -37,15 +40,14 @@ class MainActivity : AppCompatActivity(), TopMainFragment.OnFilterListener, Filt
         btnFavourites = findViewById(R.id.btn_favourites)
 
         btnMovies.setOnClickListener {
-            //Show the full movie list (MovieListFragment)
+            // Show the full movie list
             supportFragmentManager.beginTransaction()
-                //.replace(R.id.content_container, MovieListFragment())
-                .replace(R.id.content_container, MovieListFragment.newInstance(false))
+                .replace(R.id.content_container, MovieListFragment())
                 .commit()
         }
 
         btnFavourites.setOnClickListener {
-            //Show FavouritesFragment
+            // push Favourites so Back pops back to Movies
             supportFragmentManager.beginTransaction()
                 .replace(R.id.content_container, FavouritesFragment())
                 .addToBackStack(null)
@@ -55,6 +57,12 @@ class MainActivity : AppCompatActivity(), TopMainFragment.OnFilterListener, Filt
         //FILTER TOOL BAR
         filterbar = findViewById(R.id.filter_toolbar)
 
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
     }
 
     //when filter button is clicked tool bar appears
@@ -78,6 +86,15 @@ class MainActivity : AppCompatActivity(), TopMainFragment.OnFilterListener, Filt
                 .start()
         }
         isMenuVisible = !isMenuVisible
+    }
+
+    //filter change
+    //when a genre is selected it updates the list
+    override fun onFilterChanged(selected: Set<String>) {
+        val frag = supportFragmentManager.findFragmentById(R.id.content_container)
+        if (frag is MovieListFragment) {
+            frag.updateSelectedGenres(selected)
+        }
     }
 
 }
