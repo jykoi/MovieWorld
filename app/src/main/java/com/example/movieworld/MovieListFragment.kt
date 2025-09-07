@@ -1,6 +1,5 @@
 package com.example.movieworld
 
-// import androidx.fragment.app.viewModels
 import androidx.fragment.app.activityViewModels
 import android.os.Bundle
 import android.text.Editable
@@ -14,11 +13,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
+//Fragment that shows full list of movies + search.
 class MovieListFragment : Fragment() {
 
     companion object {
-        private const val ARG_SHOW_FAVS = "show_favs"
+        private const val ARG_SHOW_FAVS = "show_favs"   //Key to pass data into this fragment
 
+        //Method to create a new instance of this fragment
         fun newInstance(showFavouritesOnly: Boolean): MovieListFragment {
             val fragment = MovieListFragment()
             val args = Bundle()
@@ -28,17 +29,19 @@ class MovieListFragment : Fragment() {
         }
     }
 
+    //Get the shared ViewModel (same one used by all fragments)
     private val viewModel: MovieListViewModel by activityViewModels()
 
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: MovieAdapter
+    private lateinit var recyclerView: RecyclerView     //scrollable list
+    private lateinit var adapter: MovieAdapter          //adapter that fills in each movie card
 
-
+    //onCreate when fragment is created, check if favourites should be shown
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.showFavouritesOnly = arguments?.getBoolean(ARG_SHOW_FAVS, false) ?: false
+        viewModel.showFavouritesOnly = arguments?.getBoolean(ARG_SHOW_FAVS, false) ?: false   //read the flag
     }
 
+    //Create actual screen
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -46,28 +49,35 @@ class MovieListFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_movie_list, container, false)
     }
 
+    //Set screen up.
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Find RV from XML; Sets LayoutManager; Creates adapter w empty list for now; Attach adapter;
-        // Observe ViewModel and submits data to adapter.
+        //Find RecyclerView from layout
         recyclerView = view.findViewById(R.id.movieRecyclerView)
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        adapter = MovieAdapter(mutableListOf())
-        recyclerView.adapter = adapter
+        adapter = MovieAdapter(mutableListOf())     //Start with empty list
+        recyclerView.adapter = adapter              //Attach adapter -> RecyclerView
 
+        //Set up when user taps on Details/heart for a movie
         adapter.listener = object : MovieAdapter.OnMovieClickListener {
             override fun onDetailsClicked(movie: Movie, position: Int) {
+                //Open DetailFragment and pass the selected movie
                 parentFragmentManager.beginTransaction()
                     .replace(R.id.content_container, DetailFragment.newInstance(movie))
                     .addToBackStack(null)
                     .commit()
             }
+
+            //When the heart/checkbox is tapped in the list, update shared state BY ID
+            override fun onFavouriteToggled(movie: Movie, isFav: Boolean, position: Int) {
+                viewModel.updateFavoriteById(movie.id, isFav)
+            }
         }
 
-
+        //Observe changes in movie list (when heart is tapped)
         viewModel.movies.observe(viewLifecycleOwner) { list ->
             if (list != null) {
                 // Save raw list, then re-apply search + filters
@@ -121,10 +131,8 @@ class MovieListFragment : Fragment() {
             allMovies
         } else {
             allMovies.filter { movie ->
-                // split genre string into each category
-                val movieGenres = movie.genre.split(",").map { it.trim() }
                 // keep movie if it matches all genres selected
-                viewModel.selectedGenres.all { sel -> movieGenres.any { it.equals(sel, ignoreCase = true) } }
+                viewModel.selectedGenres.all { sel -> movie.categories.any { it.equals(sel, ignoreCase = true) } }
             }
         }
 

@@ -19,6 +19,8 @@ class MainActivity : AppCompatActivity(), TopMainFragment.OnFilterListener, Filt
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
+        //Only add initial fragments if this is the first time launching app,
+        //to avoid readding after screen rotation/ config change.
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.top_container, TopMainFragment())
@@ -33,6 +35,7 @@ class MainActivity : AppCompatActivity(), TopMainFragment.OnFilterListener, Filt
                 .commit()
         }
 
+        //Bottom navigation bar:
         btnMovies = findViewById(R.id.btn_movies)
         btnFavourites = findViewById(R.id.btn_favourites)
 
