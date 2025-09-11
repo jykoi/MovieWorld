@@ -1,5 +1,6 @@
 package com.example.movieworld
 
+import android.content.res.Configuration
 import androidx.fragment.app.activityViewModels
 import android.os.Bundle
 import android.text.Editable
@@ -10,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -53,13 +55,23 @@ class MovieListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //Find RecyclerView from layout
+        // Find RecyclerView from layout
         recyclerView = view.findViewById(R.id.movieRecyclerView)
 
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        // Check orientation
+        val orientation = resources.configuration.orientation
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            // Landscape → grid with 3 columns
+            recyclerView.layoutManager = GridLayoutManager(requireContext(), 3)
+        } else {
+            // Portrait → vertical list (linear)
+            recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        }
 
-        adapter = MovieAdapter(mutableListOf())     //Start with empty list
-        recyclerView.adapter = adapter              //Attach adapter -> RecyclerView
+// Set up adapter
+        adapter = MovieAdapter(mutableListOf())   // Start with empty list
+        recyclerView.adapter = adapter            // Attach adapter -> RecyclerView
+
 
         //Set up when user taps on Details/heart for a movie
         adapter.listener = object : MovieAdapter.OnMovieClickListener {

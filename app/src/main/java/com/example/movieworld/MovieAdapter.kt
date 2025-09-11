@@ -27,7 +27,6 @@ class MovieAdapter (private var items: MutableList<Movie>)
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val movieImage: ImageView = itemView.findViewById(R.id.movieImage)
         val movieTitle: TextView = itemView.findViewById(R.id.movieTitle)
-        val movieDescription: TextView = itemView.findViewById(R.id.movieDescription)
         val categoryContainer: LinearLayout = itemView.findViewById(R.id.categoryContainer)
         val favCheckBox: CheckBox = itemView.findViewById(R.id.favCheckBox)
         val detailsBtn: Button = itemView.findViewById(R.id.movieDetails)
@@ -46,7 +45,6 @@ class MovieAdapter (private var items: MutableList<Movie>)
 
         holder.movieImage.setImageResource(movie.imageRes)
         holder.movieTitle.text = movie.title
-        holder.movieDescription.text = movie.description
 
         renderCategories(holder.categoryContainer, movie.categories)    //Genre chips
 
