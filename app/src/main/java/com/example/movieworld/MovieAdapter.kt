@@ -1,7 +1,7 @@
 package com.example.movieworld
 
 import android.view.View
-import android.widget.Button
+import android.widget.ImageButton
 import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
@@ -29,7 +29,7 @@ class MovieAdapter (private var items: MutableList<Movie>)
         val movieTitle: TextView = itemView.findViewById(R.id.movieTitle)
         val categoryContainer: LinearLayout = itemView.findViewById(R.id.categoryContainer)
         val favCheckBox: CheckBox = itemView.findViewById(R.id.favCheckBox)
-        val detailsBtn: Button = itemView.findViewById(R.id.movieDetails)
+        val detailsBtn: ImageButton = itemView.findViewById(R.id.movieDetails)
     }
 
     //Called when RecyclerView needs a new card (when scrolling)
