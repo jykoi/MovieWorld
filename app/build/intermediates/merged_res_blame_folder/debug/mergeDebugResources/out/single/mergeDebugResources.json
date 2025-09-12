@@ -1,27 +1,7 @@
 [
     {
-        "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/drawable_movies_icon.png.flat",
-        "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/drawable/movies_icon.png"
-    },
-    {
-        "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/drawable_ic_launcher_background.xml.flat",
-        "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/drawable/ic_launcher_background.xml"
-    },
-    {
-        "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/drawable_poster_oppenheimer.jpg.flat",
-        "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/drawable/poster_oppenheimer.jpg"
-    },
-    {
-        "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/drawable_box_unchecked.xml.flat",
-        "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/drawable/box_unchecked.xml"
-    },
-    {
         "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/drawable_poster_thenakedgun.jpg.flat",
         "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/drawable/poster_thenakedgun.jpg"
-    },
-    {
-        "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/drawable_back_icon.png.flat",
-        "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/drawable/back_icon.png"
     },
     {
         "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/drawable_poster_pulpfiction.jpg.flat",
@@ -36,32 +16,12 @@
         "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/mipmap-xxhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/layout_fragment_movie_detail.xml.flat",
-        "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/layout/fragment_movie_detail.xml"
-    },
-    {
         "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/drawable_poster_weapons.jpg.flat",
         "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/drawable/poster_weapons.jpg"
     },
     {
-        "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/mipmap-hdpi_ic_launcher.webp.flat",
-        "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/mipmap-hdpi/ic_launcher.webp"
-    },
-    {
         "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/mipmap-mdpi_ic_launcher.webp.flat",
         "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/mipmap-mdpi/ic_launcher.webp"
-    },
-    {
-        "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/mipmap-mdpi_ic_launcher_round.webp.flat",
-        "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/mipmap-mdpi/ic_launcher_round.webp"
-    },
-    {
-        "merged": "com.example.movieworld.app-debug-41:/layout_activity_main.xml.flat",
-        "source": "com.example.movieworld.app-main-43:/layout/activity_main.xml"
-    },
-    {
-        "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/xml_data_extraction_rules.xml.flat",
-        "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/xml/data_extraction_rules.xml"
     },
     {
         "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/layout_fragment_favourites_list.xml.flat",
@@ -76,64 +36,24 @@
         "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/layout-land/fragment_movie_detail.xml"
     },
     {
-        "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/drawable_poster_skyhigh.jpg.flat",
-        "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/drawable/poster_skyhigh.jpg"
-    },
-    {
         "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/mipmap-hdpi_ic_launcher_round.webp.flat",
         "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/mipmap-hdpi/ic_launcher_round.webp"
-    },
-    {
-        "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/drawable_favourites_icon.png.flat",
-        "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/drawable/favourites_icon.png"
-    },
-    {
-        "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/layout_movie_item.xml.flat",
-        "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/layout/movie_item.xml"
-    },
-    {
-        "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/drawable_checkbox_icon.xml.flat",
-        "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/drawable/checkbox_icon.xml"
-    },
-    {
-        "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/layout_activity_main.xml.flat",
-        "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/layout/activity_main.xml"
     },
     {
         "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/drawable_poster_babydriver.jpg.flat",
         "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/drawable/poster_babydriver.jpg"
     },
     {
-        "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/layout_fragment_movie_list.xml.flat",
-        "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/layout/fragment_movie_list.xml"
-    },
-    {
-        "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/mipmap-xxxhdpi_ic_launcher.webp.flat",
-        "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/mipmap-xxxhdpi/ic_launcher.webp"
-    },
-    {
-        "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/drawable_filter_icon.webp.flat",
-        "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/drawable/filter_icon.webp"
+        "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/layout-land_fragment_movie_list.xml.flat",
+        "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/layout-land/fragment_movie_list.xml"
     },
     {
         "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/layout_fragment_filter_menu.xml.flat",
         "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/layout/fragment_filter_menu.xml"
     },
     {
-        "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/drawable_poster_jurassicpark.jpg.flat",
-        "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/drawable/poster_jurassicpark.jpg"
-    },
-    {
-        "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/mipmap-anydpi-v26/ic_launcher.xml"
-    },
-    {
         "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/drawable_poster_dune.jpg.flat",
         "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/drawable/poster_dune.jpg"
-    },
-    {
-        "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/drawable_details_icon.png.flat",
-        "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/drawable/details_icon.png"
     },
     {
         "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/mipmap-xhdpi_ic_launcher.webp.flat",
@@ -156,24 +76,8 @@
         "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/drawable/poster_thelionking.jpg"
     },
     {
-        "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/drawable_pill_primary.xml.flat",
-        "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/drawable/pill_primary.xml"
-    },
-    {
-        "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/mipmap-xhdpi_ic_launcher_round.webp.flat",
-        "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/mipmap-xhdpi/ic_launcher_round.webp"
-    },
-    {
-        "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/layout_fragment_top_main.xml.flat",
-        "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/layout/fragment_top_main.xml"
-    },
-    {
         "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/drawable_movieworld_logo.png.flat",
         "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/drawable/movieworld_logo.png"
-    },
-    {
-        "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/drawable_chip.xml.flat",
-        "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/drawable/chip.xml"
     },
     {
         "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/mipmap-xxhdpi_ic_launcher.webp.flat",
@@ -186,5 +90,109 @@
     {
         "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/drawable_ic_launcher_foreground.xml.flat",
         "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/drawable_movies_icon.png.flat",
+        "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/drawable/movies_icon.png"
+    },
+    {
+        "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/drawable_ic_launcher_background.xml.flat",
+        "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/drawable_poster_oppenheimer.jpg.flat",
+        "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/drawable/poster_oppenheimer.jpg"
+    },
+    {
+        "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/drawable_box_unchecked.xml.flat",
+        "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/drawable/box_unchecked.xml"
+    },
+    {
+        "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/drawable_back_icon.png.flat",
+        "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/drawable/back_icon.png"
+    },
+    {
+        "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/layout_fragment_movie_detail.xml.flat",
+        "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/layout/fragment_movie_detail.xml"
+    },
+    {
+        "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/mipmap-hdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.movieworld.app-debug-41:/layout-land_fragment_movie_list.xml.flat",
+        "source": "com.example.movieworld.app-main-43:/layout-land/fragment_movie_list.xml"
+    },
+    {
+        "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/mipmap-mdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/xml_data_extraction_rules.xml.flat",
+        "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/drawable_poster_skyhigh.jpg.flat",
+        "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/drawable/poster_skyhigh.jpg"
+    },
+    {
+        "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/drawable_favourites_icon.png.flat",
+        "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/drawable/favourites_icon.png"
+    },
+    {
+        "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/layout_movie_item.xml.flat",
+        "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/layout/movie_item.xml"
+    },
+    {
+        "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/drawable_checkbox_icon.xml.flat",
+        "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/drawable/checkbox_icon.xml"
+    },
+    {
+        "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/layout_activity_main.xml.flat",
+        "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/layout/activity_main.xml"
+    },
+    {
+        "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/layout-land_fragment_top_main.xml.flat",
+        "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/layout-land/fragment_top_main.xml"
+    },
+    {
+        "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/layout_fragment_movie_list.xml.flat",
+        "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/layout/fragment_movie_list.xml"
+    },
+    {
+        "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/mipmap-xxxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/drawable_filter_icon.webp.flat",
+        "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/drawable/filter_icon.webp"
+    },
+    {
+        "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/drawable_poster_jurassicpark.jpg.flat",
+        "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/drawable/poster_jurassicpark.jpg"
+    },
+    {
+        "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/drawable_details_icon.png.flat",
+        "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/drawable/details_icon.png"
+    },
+    {
+        "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/drawable_pill_primary.xml.flat",
+        "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/drawable/pill_primary.xml"
+    },
+    {
+        "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/mipmap-xhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/layout_fragment_top_main.xml.flat",
+        "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/layout/fragment_top_main.xml"
+    },
+    {
+        "merged": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-debug-41:/drawable_chip.xml.flat",
+        "source": "/Users/amber/.gradle/daemon/8.13/com.example.movieworld.app-main-43:/drawable/chip.xml"
     }
 ]
