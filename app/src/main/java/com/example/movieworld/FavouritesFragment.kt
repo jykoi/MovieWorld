@@ -28,12 +28,21 @@ class FavouritesFragment : Fragment() {
 
         recyclerView = view.findViewById(R.id.favouritesRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        
+
 
         adapter = MovieAdapter(mutableListOf()) //Empty list of movies first.
         recyclerView.adapter = adapter          //Attach adapter to RecyclerView
 
         adapter.listener = object : MovieAdapter.OnMovieClickListener {
             override fun onDetailsClicked(movie: Movie, position: Int) {
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.content_container, DetailFragment.newInstance(movie))
+                    .addToBackStack(null)
+                    .commit()
+            }
+
+            override fun onMovieClicked(movie: Movie, position: Int) {
                 parentFragmentManager.beginTransaction()
                     .replace(R.id.content_container, DetailFragment.newInstance(movie))
                     .addToBackStack(null)

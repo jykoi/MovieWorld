@@ -2,6 +2,7 @@ package com.example.movieworld
 
 import android.view.View
 import android.widget.ImageButton
+import androidx.cardview.widget.CardView
 import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
@@ -19,6 +20,8 @@ class MovieAdapter (private var items: MutableList<Movie>)
     //Interface that lets Fragment (details + favourites) know when user taps "Details"/heart
     interface OnMovieClickListener {
         fun onDetailsClicked(movie: Movie, position: Int)
+        fun onMovieClicked(movie: Movie, position: Int)
+
         fun onFavouriteToggled(movie: Movie, isFav: Boolean, position: Int)
     }
     var listener: OnMovieClickListener? = null  //Holds whoever is listening, null when it starts
@@ -30,6 +33,8 @@ class MovieAdapter (private var items: MutableList<Movie>)
         val categoryContainer: LinearLayout = itemView.findViewById(R.id.categoryContainer)
         val favCheckBox: CheckBox = itemView.findViewById(R.id.favCheckBox)
         val detailsBtn: ImageButton = itemView.findViewById(R.id.movieDetails)
+        val cardView: CardView = itemView.findViewById(R.id.movieCard)
+
     }
 
     //Called when RecyclerView needs a new card (when scrolling)
@@ -63,8 +68,22 @@ class MovieAdapter (private var items: MutableList<Movie>)
             }
         })
 
-        //When user taps "Details", open the detail screen
-        holder.detailsBtn.setOnClickListener(object : View.OnClickListener {
+        //When user taps the movie card, open the detail screen
+        holder.cardView.setOnClickListener {
+            if (holder.bindingAdapterPosition != RecyclerView.NO_POSITION && listener != null) {
+                listener!!.onMovieClicked(movie, holder.bindingAdapterPosition)
+            }
+        }
+
+        //When user taps "Details icon", open the detail screen
+        holder.detailsBtn.setOnClickListener {
+            if (holder.bindingAdapterPosition != RecyclerView.NO_POSITION && listener != null) {
+                listener!!.onDetailsClicked(movie, holder.bindingAdapterPosition)
+            }
+        }
+
+        /*
+        holder.cardView.setOnClickListener(object : View.OnClickListener {
             override fun onClick(clickedView: View?) {
                 val currentPosition = holder.bindingAdapterPosition
                 if (currentPosition != RecyclerView.NO_POSITION && listener != null) {
@@ -73,6 +92,19 @@ class MovieAdapter (private var items: MutableList<Movie>)
             }
         })
     }
+
+
+        holder.detailsBtn.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(clickedView: View?) {
+                val currentPosition = holder.bindingAdapterPosition
+                if (currentPosition != RecyclerView.NO_POSITION && listener != null) {
+                    listener!!.onDetailsClicked(movie, currentPosition)
+                }
+            }
+        })
+    */
+    }
+
 
     override fun getItemCount(): Int = items.size
 

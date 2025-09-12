@@ -83,6 +83,13 @@ class MovieListFragment : Fragment() {
                     .commit()
             }
 
+            override fun onMovieClicked(movie: Movie, position: Int) {
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.content_container, DetailFragment.newInstance(movie))
+                    .addToBackStack(null)
+                    .commit()
+            }
+
             //When the heart/checkbox is tapped in the list, update shared state BY ID
             override fun onFavouriteToggled(movie: Movie, isFav: Boolean, position: Int) {
                 viewModel.updateFavoriteById(movie.id, isFav)
