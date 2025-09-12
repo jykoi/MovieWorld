@@ -39,6 +39,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:drawableLeft="@drawable/movies_icon"
+                android:drawablePadding="20dp"
+                android:paddingStart="40dp"
                 android:text="Movies"
                 android:textColor="#888888"
                 android:background="?android:attr/selectableItemBackground"  />
