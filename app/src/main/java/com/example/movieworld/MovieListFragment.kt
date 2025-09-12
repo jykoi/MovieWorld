@@ -68,7 +68,7 @@ class MovieListFragment : Fragment() {
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
         }
 
-// Set up adapter
+        // Set up adapter
         adapter = MovieAdapter(mutableListOf())   // Start with empty list
         recyclerView.adapter = adapter            // Attach adapter -> RecyclerView
 

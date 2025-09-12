@@ -1,11 +1,13 @@
 package com.example.movieworld
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -27,9 +29,16 @@ class FavouritesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         recyclerView = view.findViewById(R.id.favouritesRecyclerView)
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        
 
+        // Check orientation
+        val orientation = resources.configuration.orientation
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            // Landscape → grid with 3 columns
+            recyclerView.layoutManager = GridLayoutManager(requireContext(), 3)
+        } else {
+            // Portrait → vertical list (linear)
+            recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        }
 
         adapter = MovieAdapter(mutableListOf()) //Empty list of movies first.
         recyclerView.adapter = adapter          //Attach adapter to RecyclerView
