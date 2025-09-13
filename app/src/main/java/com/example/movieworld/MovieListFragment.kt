@@ -14,6 +14,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import android.widget.LinearLayout
 
 //Fragment that shows full list of movies + search.
 class MovieListFragment : Fragment() {
@@ -55,6 +56,7 @@ class MovieListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         // Find RecyclerView from layout
         recyclerView = view.findViewById(R.id.movieRecyclerView)
 
@@ -76,24 +78,34 @@ class MovieListFragment : Fragment() {
         //Set up when user taps on Details/heart for a movie
         adapter.listener = object : MovieAdapter.OnMovieClickListener {
             override fun onDetailsClicked(movie: Movie, position: Int) {
+
+
+
                 //Open DetailFragment and pass the selected movie
                 parentFragmentManager.beginTransaction()
                     .replace(R.id.content_container, DetailFragment.newInstance(movie))
+                    //.replace(R.id.bottom_container, Fragment())
                     .addToBackStack(null)
                     .commit()
             }
 
             override fun onMovieClicked(movie: Movie, position: Int) {
+
+
+
                 parentFragmentManager.beginTransaction()
                     .replace(R.id.content_container, DetailFragment.newInstance(movie))
                     .addToBackStack(null)
                     .commit()
+
             }
 
             //When the heart/checkbox is tapped in the list, update shared state BY ID
             override fun onFavouriteToggled(movie: Movie, isFav: Boolean, position: Int) {
                 viewModel.updateFavoriteById(movie.id, isFav)
             }
+
+
         }
 
         //Observe changes in movie list (when heart is tapped)
@@ -173,4 +185,7 @@ class MovieListFragment : Fragment() {
         viewModel.selectedGenres.addAll(genres)
         applyFiltersAndSearch()
     }
+
+
 }
+

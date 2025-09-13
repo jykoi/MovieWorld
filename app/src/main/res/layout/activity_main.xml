@@ -1,46 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/root_layout"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Original vertical layout moved inside FrameLayout -->
-    <LinearLayout
-        android:id="@+id/main"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <!-- Top container -->
+    <FrameLayout
+        android:id="@+id/top_container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-        <!-- Top container (e.g., search bar or header) -->
-        <FrameLayout
-            android:id="@+id/top_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+    <!-- Content container -->
+    <FrameLayout
+        android:id="@+id/content_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/top_container"
+        app:layout_constraintBottom_toTopOf="@id/bottom_container"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-        <!-- Main content area for fragments -->
-        <FrameLayout
-            android:id="@+id/content_container"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
+    <!-- Bottom container -->
+    <FrameLayout
+        android:id="@+id/bottom_container"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-        <!-- Bottom navigation -->
-        <FrameLayout
-            android:id="@+id/bottom_container"
-            android:layout_width="match_parent"
-            android:layout_height="60dp" />
-
-    </LinearLayout>
-
-    <!-- Side Filter Toolbar (initially off screen to the left) -->
+    <!-- Filter toolbar -->
     <FrameLayout
         android:id="@+id/filter_toolbar"
         android:layout_width="250dp"
         android:layout_height="match_parent"
         android:background="#EEEBF3"
         android:translationX="-250dp"
-        android:elevation="8dp">
+        android:elevation="8dp"/>
 
-    </FrameLayout>
-
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

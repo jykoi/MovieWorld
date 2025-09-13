@@ -28,6 +28,7 @@ class FavouritesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         recyclerView = view.findViewById(R.id.favouritesRecyclerView)
 
         // Check orientation
@@ -45,15 +46,21 @@ class FavouritesFragment : Fragment() {
 
         adapter.listener = object : MovieAdapter.OnMovieClickListener {
             override fun onDetailsClicked(movie: Movie, position: Int) {
+
+
                 parentFragmentManager.beginTransaction()
                     .replace(R.id.content_container, DetailFragment.newInstance(movie))
+                    .replace(R.id.bottom_container, Fragment())
                     .addToBackStack(null)
                     .commit()
             }
 
             override fun onMovieClicked(movie: Movie, position: Int) {
+
+
                 parentFragmentManager.beginTransaction()
                     .replace(R.id.content_container, DetailFragment.newInstance(movie))
+                    .replace(R.id.bottom_container, Fragment())
                     .addToBackStack(null)
                     .commit()
             }
@@ -91,4 +98,6 @@ class FavouritesFragment : Fragment() {
 
         adapter.updateData(filtered.toMutableList())
     }
+
+
 }

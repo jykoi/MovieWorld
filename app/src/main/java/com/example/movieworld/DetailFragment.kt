@@ -46,6 +46,9 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val bottomContainer = activity?.findViewById<View>(R.id.bottom_container)
+        bottomContainer?.visibility = View.GONE
+
         val backBtn: ImageButton = view.findViewById(R.id.backBtn)
         val poster: ImageView = view.findViewById(R.id.detailPoster)
         val title: TextView = view.findViewById(R.id.detailTitle)
@@ -94,4 +97,10 @@ class DetailFragment : Fragment() {
             }
         })
     }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        val bottomBar = activity?.findViewById<View>(R.id.bottom_container)
+        bottomBar?.visibility = View.VISIBLE
+    }
+
 }
