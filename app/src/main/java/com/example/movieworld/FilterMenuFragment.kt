@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.ImageButton
 
+//FilterMenuFragment is the sidebar for users to select genres of movies.
 class FilterMenuFragment : Fragment() {
 
     //listeners to send data to main activity

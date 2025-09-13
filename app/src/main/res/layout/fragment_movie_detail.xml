@@ -5,11 +5,13 @@
     android:padding="16dp"
     android:fillViewport="true">
 
+    <!-- Layout for the movie details -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <!-- The interactive back button -->
         <ImageButton
             android:id="@+id/backBtn"
             android:layout_width="40dp"
@@ -56,6 +58,7 @@
             android:textSize="14sp"
             android:background="#E0E0E0" />
 
+        <!-- Favourites button -->
         <CheckBox
             android:id="@+id/detailFavCheck"
             android:layout_width="wrap_content"

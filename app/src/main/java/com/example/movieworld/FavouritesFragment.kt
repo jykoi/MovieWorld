@@ -33,7 +33,7 @@ class FavouritesFragment : Fragment() {
         // Check orientation
         val orientation = resources.configuration.orientation
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            // Landscape → grid with 3 columns
+            // Landscape → grid view with 3 columns
             recyclerView.layoutManager = GridLayoutManager(requireContext(), 3)
         } else {
             // Portrait → vertical list (linear)

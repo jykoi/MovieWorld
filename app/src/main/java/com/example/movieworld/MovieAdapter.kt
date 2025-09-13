@@ -75,34 +75,14 @@ class MovieAdapter (private var items: MutableList<Movie>)
             }
         }
 
-        //When user taps "Details icon", open the detail screen
+        //When user taps the details icon, open the detail screen
         holder.detailsBtn.setOnClickListener {
             if (holder.bindingAdapterPosition != RecyclerView.NO_POSITION && listener != null) {
                 listener!!.onDetailsClicked(movie, holder.bindingAdapterPosition)
             }
         }
 
-        /*
-        holder.cardView.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(clickedView: View?) {
-                val currentPosition = holder.bindingAdapterPosition
-                if (currentPosition != RecyclerView.NO_POSITION && listener != null) {
-                    listener!!.onDetailsClicked(movie, currentPosition)
-                }
-            }
-        })
-    }
 
-
-        holder.detailsBtn.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(clickedView: View?) {
-                val currentPosition = holder.bindingAdapterPosition
-                if (currentPosition != RecyclerView.NO_POSITION && listener != null) {
-                    listener!!.onDetailsClicked(movie, currentPosition)
-                }
-            }
-        })
-    */
     }
 
 

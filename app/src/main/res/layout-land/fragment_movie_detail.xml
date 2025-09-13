@@ -5,6 +5,8 @@
     android:padding="16dp"
     android:fillViewport="true">
 
+
+    <!-- Layout for the movie details page changed to horizontal -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,6 +22,7 @@
             android:scaleType="fitCenter"
             android:layout_marginEnd="16dp"/>
 
+        <!-- Vertical layout for the movie details -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
