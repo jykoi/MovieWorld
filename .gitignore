@@ -1,3 +1,4 @@
+# Android/Gradle/IDE files
 *.iml
 .gradle
 /local.properties
@@ -7,9 +8,13 @@
 /.idea/workspace.xml
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
+
+# macOS
 .DS_Store
+
+# Build artifacts
 /build
+/app/build
 /captures
 .externalNativeBuild
 .cxx
-local.properties
