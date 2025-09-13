@@ -38,25 +38,15 @@ class MainActivity : AppCompatActivity(),
                 .commit()
 
             supportFragmentManager.beginTransaction()
+                .replace(R.id.bottom_container, BottomMainFragment())
+                .commit()
+
+            supportFragmentManager.beginTransaction()
                 .replace(R.id.filter_toolbar, FilterMenuFragment())
                 .commit()
         }
 
-        btnMovies = findViewById(R.id.btn_movies)
-        btnFavourites = findViewById(R.id.btn_favourites)
 
-        btnMovies.setOnClickListener {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.content_container, MovieListFragment())
-                .commit()
-        }
-
-        btnFavourites.setOnClickListener {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.content_container, FavouritesFragment())
-                .addToBackStack(null)
-                .commit()
-        }
 
         filterbar = findViewById(R.id.filter_toolbar)
 

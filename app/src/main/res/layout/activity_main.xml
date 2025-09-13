@@ -25,34 +25,11 @@
             android:layout_weight="1" />
 
         <!-- Bottom navigation -->
-        <LinearLayout
+        <FrameLayout
             android:id="@+id/bottom_container"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:orientation="horizontal"
-            android:background="#FFFFFF"
-            android:gravity="center">
+            android:layout_height="60dp" />
 
-            <Button
-                android:id="@+id/btn_movies"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:drawableLeft="@drawable/movies_icon"
-                android:text="Movies"
-                android:textColor="#888888"
-                android:background="?android:attr/selectableItemBackground"  />
-
-            <Button
-                android:id="@+id/btn_favourites"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:drawableLeft="@drawable/favourites_icon"
-                android:text="Favourites"
-                android:textColor="#888888"
-                android:background="?android:attr/selectableItemBackground" />
-        </LinearLayout>
     </LinearLayout>
 
     <!-- Side Filter Toolbar (initially off screen to the left) -->
